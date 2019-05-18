@@ -21,31 +21,24 @@ enum custom_keycodes {
   QMKURL
 };
 
-#define LAYER( \
-  L00, L01, L02, L03, R00, R01, R02, R03, \
-  L10, L11, L12, L13, R10, R11, R12, R13 ) \
-  { \
-    { L03, L02, L01, L00 }, \
-    { L13, L12, L11, L10 }, \
-    { R00, R01, R02, R03 }, \
-    { R10, R11, R12, R13 }, \
-  }
+enum custom_layers {
+  LAYER_BASE,
+  LAYER_RGB,
+  LAYER_ARROW,
+};
 
-#define LAYER_BASE  0
-#define LAYER_RGB   1
-#define LAYER_ARROW 2
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [LAYER_BASE] = LAYER(
-      MO( LAYER_RGB ),   KC_7, KC_8, KC_9,   KC_1, KC_2, KC_3, KC_KP_PLUS,
-      MO( LAYER_ARROW ), KC_4, KC_5, KC_6,   KC_0, KC_DOT, KC_KP_MINUS, KC_KP_ENTER
+  [LAYER_BASE] = LAYOUT(
+      MO( LAYER_RGB ),   KC_KP_7, KC_KP_8, KC_KP_9,    KC_KP_1, KC_KP_2,   KC_KP_3,    KC_KP_MINUS,
+      MO( LAYER_ARROW ), KC_KP_4, KC_KP_5, KC_KP_6,    KC_KP_0, KC_KP_DOT, KC_KP_PLUS, KC_KP_ENTER
   ),
-  [LAYER_RGB] = LAYER(
-      _______, RGB_TOG, RGB_M_G, RGB_M_K,    RGB_MOD,  RGB_HUI, RGB_SAI, RGB_VAI,
-      _______, RGB_M_B, RGB_M_R, RGB_M_SW,   RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD
+  [LAYER_RGB] = LAYOUT(
+      _______, RGB_TOG, RGB_M_G, RGB_M_K,      RGB_MOD,  RGB_HUI, RGB_SAI, RGB_VAI,
+      _______, RGB_M_B, RGB_M_R, RGB_M_SW,     RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD
   ),
-  [LAYER_ARROW] = LAYER(
-      _______, _______, _______,   _______,    KC_HOME, KC_UP,   KC_END,   KC_PGUP,
-      _______, _______, KC_BSPACE, KC_DELETE,  KC_LEFT, KC_DOWN, KC_RIGHT, KC_PGDOWN
+  [LAYER_ARROW] = LAYOUT(
+      _______, RCMD(KC_Z), KC_PGUP,    KC_PGDOWN,     KC_HOME, KC_UP,   KC_END,   KC_DELETE,
+      _______, RCMD(KC_X), RCMD(KC_C), RCMD(KC_V),    KC_LEFT, KC_DOWN, KC_RIGHT, KC_BSPACE
   ),
 };
 
